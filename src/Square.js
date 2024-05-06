@@ -33,7 +33,7 @@ const squareStyle = {
     justifyContent: 'center',
     fontSize: '48px',
     height: '100px',
-    weight: '100px',
+    width: '100px',
     boxSizing: 'border-box',
     backgroundColor: '#faf9f3'
 
@@ -55,7 +55,7 @@ const Square = ({ square, handleMove, index, winner }) => {
         content: ' ',
         top: '50%',
         left: '50%',
-        width: '141%',
+        width: '100%',
         height: '2px',
         backgroundColor: 'black',
         transform: `translate(-50%, -50%) rotate(${rotationAngle})`,
