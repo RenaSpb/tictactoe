@@ -11,19 +11,16 @@ function App() {
 
     useEffect(() => {
         winnerCheck();
-        }, [squares]);
+    }, [squares]);
 
     function handleMove(index) {
-
         if (!squares[index] && !winner) {
             const newSquare = [...squares]
             newSquare[index] = isXNext ? 'X' : 'O';
             setSquares(newSquare);
             setIsXNext(!isXNext);
-            winnerCheck();
         }
     }
-
 
     function winnerCheck() {
         const winLines = [
@@ -39,28 +36,24 @@ function App() {
 
         for (let i = 0; i < winLines.length; i++) {
             const [a, b, c] = winLines[i];
-            const line = [squares[a], squares[b], squares[c]];
-            const xCount = line.filter(square => square === 'X').length;
-            const oCount = line.filter(square => square === 'O').length;
-
-            if (xCount === 3) {
-                setWinner({ player: 'X won', indices: [a, b, c] });
-                setCountX(countX + 1)
-                return;
-            } else if (oCount === 3) {
-                setWinner({ player: 'O won', indices: [a, b, c] });
-                setCountO(countO + 1)
+            if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                setWinner({player: squares[a], indices: [a, b, c]});
+                if (squares[a] === 'X') {
+                    setCountX((prevCountX) => prevCountX + 1);
+                } else {
+                    setCountO((prevCountO) => prevCountO + 1);
+                }
                 return;
             }
         }
         if (squares.every(square => square !== null))
-            setWinner({ player: 'Draw', indices: [] });
+            setWinner({player: 'Draw', indices: []});
     }
 
-        function reset() {
-            setSquares(new Array(9).fill(null));
-            setWinner(null);
-            setIsXNext(true);
+    function reset() {
+        setSquares(new Array(9).fill(null));
+        setWinner(null);
+        setIsXNext(true);
     }
 
     function resetAll() {
@@ -71,13 +64,16 @@ function App() {
         setCountO(0)
     }
 
-    const playerText = winner ? `${winner.player}!` : isXNext ? 'X turn' : 'O turn';
+    const playerText = winner ? `${winner.player} won!` : isXNext ? 'X turn' : 'O turn';
 
     return (
         <div className="App">
             <div className="textField">Tiс Tac Toe</div>
-            <Board squares={squares} handleMove={handleMove} winner={winner}/>
-
+            <Board
+                squares={squares}
+                handleMove={handleMove}
+                winner={winner}
+            />
             <div className="upperBoard">
                 <div className="textField">{playerText}</div>
                 <button className="button greenGradientBtn"
@@ -97,11 +93,11 @@ function App() {
                     </thead>
                     <tbody>
                     <tr>
-                        <td>X</td>
+                        <td className="bold-text">X</td>
                         <td>{countX}</td>
                     </tr>
                     <tr>
-                        <td>O</td>
+                        <td className="bold-text">O</td>
                         <td>{countO}</td>
                     </tr>
                     </tbody>

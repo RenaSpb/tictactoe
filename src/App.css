@@ -1,22 +1,14 @@
 body {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
   background-color: #efeaea;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  margin: 0;
 }
 
-.textField {
-  font-size: 60px;
-  text-align: center;
-  font-family: "Dubai";
-  color: #493c3c;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.button {
-   margin-top: 20px;
+.bold-text {
+  font-weight: bold;
 }
 
 .button:hover {
@@ -24,50 +16,55 @@ body {
   color: #2c1717;
 }
 
- .greenGradientBtn {
-   padding: 1rem 2rem 1rem 2rem;
-   border-radius: 50px;
-   border-style: none;
-   font-size: 0.975rem;
-   text-transform: uppercase;
-   color: #fff;
-   cursor: pointer;
-   background-image: linear-gradient(132deg, #e7caca 0%, #4b3e3e 100%);
- }
+.greenGradientBtn {
+  background-image: linear-gradient(132deg, #e7caca 0%, #766767 100%);
+  border-radius: 50px;
+  border-style: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.975rem;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .greenGradientBtn:active {
   transform: translateY(-1px);
 }
 
-
-.upperBoard, .lowerBoard {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  margin-top: 10px;
-  margin-bottom: 40px;
-}
-
-.lowerBoard {
-  margin-top: 10px;
-  justify-content: space-between;
-}
-
 table {
   width: 20%;
-
 }
 
-th, td {
-  padding: 0;
-  text-align: center;
+td {
+  color: #493c3c;
+  font-family: "Dubai", serif;
   font-size: 20px;
+  padding: 0 0 0 10px;
+  text-align: center;
+}
+
+.textField {
+  color: #493c3c;
+  font-family: "Dubai", serif;
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 th {
-  font-weight: bold; /* Жирный текст в заголовках */
-}
-td {
+  font-family: "Dubai", serif;
   font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 0;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.upperBoard, .lowerBoard {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  margin-top: 10px;
 }
