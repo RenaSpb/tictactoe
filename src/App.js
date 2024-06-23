@@ -12,6 +12,17 @@ function App() {
     const [gameMode, setGameMode] = useState(null)
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
 
+    const winLines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
     useEffect(() => {
         winnerCheck();
         //eslint-disable-next-line
@@ -38,17 +49,6 @@ function App() {
     }
 
     function winnerCheck() {
-        const winLines = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6]
-        ];
-
         for (let i = 0; i < winLines.length; i++) {
             const [a, b, c] = winLines[i];
             if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -87,15 +87,42 @@ function App() {
     }
 
     function computerMove() {
-        let availableMoves = squares.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
+        const availableMoves = squares.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
+        for (let move of availableMoves) {
+            const newSquares = [...squares];
+            newSquares[move] = 'O';
+            if (checkWinner(newSquares, 'O')) {
+                setSquares(newSquares);
+                setIsXNext(true);
+                setIsPlayerTurn(true);
+                return;
+            }
+        }
+
+        for (let move of availableMoves) {
+            const newSquares = [...squares];
+            newSquares[move] = 'X';
+            if (checkWinner(newSquares, 'X')) {
+                newSquares[move] = 'O';
+                setSquares(newSquares);
+                setIsXNext(true);
+                setIsPlayerTurn(true);
+                return;
+            }
+        }
+
         if (availableMoves.length > 0) {
-            let randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            const randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
             const newSquare = [...squares];
             newSquare[randomMove] = 'O';
             setSquares(newSquare);
             setIsXNext(true);
-            setIsPlayerTurn(true)
+            setIsPlayerTurn(true);
         }
+    }
+
+    function checkWinner(squares, player) {
+        return winLines.some(([a, b, c]) => squares[a] === player && squares[a] === squares[b] && squares[a] === squares[c]);
     }
 
     const win = winner && winner.player === 'X'
