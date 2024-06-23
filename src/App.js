@@ -10,6 +10,7 @@ function App() {
     const [countO, setCountO] = useState(0)
     const [countDraw, setCountDraw] = useState(0)
     const [gameMode, setGameMode] = useState(null)
+    const [isPlayerTurn, setIsPlayerTurn] = useState(true);
 
     useEffect(() => {
         winnerCheck();
@@ -20,18 +21,19 @@ function App() {
         if (gameMode === 'computer' && !isXNext && !winner) {
             const timer = setTimeout(() => {
                 computerMove();
-            }, 200);
+            }, 300);
             return () => clearTimeout(timer);
         }
         //eslint-disable-next-line
     }, [isXNext, gameMode, winner]);
 
     function handleMove(index) {
-        if (!squares[index] && !winner) {
+        if (!squares[index] && !winner && (gameMode !== 'computer' || isPlayerTurn)) {
             const newSquare = [...squares]
             newSquare[index] = isXNext ? 'X' : 'O';
             setSquares(newSquare);
             setIsXNext(!isXNext);
+            setIsPlayerTurn(false)
         }
     }
 
@@ -70,6 +72,7 @@ function App() {
         setSquares(new Array(9).fill(null));
         setWinner(null);
         setIsXNext(true);
+        setIsPlayerTurn(true);
     }
 
     function resetAll() {
@@ -79,7 +82,8 @@ function App() {
         setCountX(0);
         setCountO(0);
         setCountDraw(0);
-        setGameMode(null)
+        setGameMode(null);
+        setIsPlayerTurn(true);
     }
 
     function computerMove() {
@@ -90,6 +94,7 @@ function App() {
             newSquare[randomMove] = 'O';
             setSquares(newSquare);
             setIsXNext(true);
+            setIsPlayerTurn(true)
         }
     }
 
