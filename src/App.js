@@ -11,6 +11,7 @@ function App() {
 
     useEffect(() => {
         winnerCheck();
+        //eslint-disable-next-line
     }, [squares]);
 
     function handleMove(index) {
