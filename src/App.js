@@ -9,11 +9,21 @@ function App() {
     const [countX, setCountX] = useState(0)
     const [countO, setCountO] = useState(0)
     const [countDraw, setCountDraw] = useState(0)
+    const [gameMode, setGameMode] = useState(null)
 
     useEffect(() => {
         winnerCheck();
         //eslint-disable-next-line
     }, [squares]);
+
+    useEffect(() => {
+        if (gameMode === 'computer' && !isXNext && !winner) {
+            const timer = setTimeout(() => {
+                computerMove();
+            }, 200);
+            return () => clearTimeout(timer);
+        }
+    }, [isXNext, gameMode, winner]);
 
     function handleMove(index) {
         if (!squares[index] && !winner) {
@@ -48,7 +58,7 @@ function App() {
                 return;
             }
         }
-        if (squares.every(square => square !== null)){
+        if (squares.every(square => square !== null)) {
             setWinner({player: 'Draw', indices: []});
             setCountDraw((prevCountDraw) => prevCountDraw + 1);
         }
@@ -66,58 +76,98 @@ function App() {
         setWinner(null);
         setIsXNext(true);
         setCountX(0);
-        setCountO(0)
-        setCountDraw(0)
+        setCountO(0);
+        setCountDraw(0);
+        setGameMode(null)
     }
 
+    function computerMove() {
+        let availableMoves = squares.map((val, idx) => val === null ? idx : null).filter(val => val !== null);
+        if (availableMoves.length > 0) {
+            let randomMove = availableMoves[Math.floor(Math.random() * availableMoves.length)];
+            const newSquare = [...squares];
+            newSquare[randomMove] = 'O';
+            setSquares(newSquare);
+            setIsXNext(true);
+        }
+    }
+
+    const win = winner && winner.player === 'X'
+        ? (gameMode === 'computer' ? 'You' : 'X')
+        : (winner && winner.player === 'O'
+            ? (gameMode === 'computer' ? 'Computer' : 'O')
+            : '');
+
     const playerText = winner
-        ? (winner.player === 'Draw' ? 'Draw!' : `${winner.player} won!`)
-        : (isXNext ? 'X turn' : 'O turn');
+        ? (winner.player === 'Draw' ? 'Draw!' : `${win} won!`)
+        : (gameMode === 'computer'
+            ? (isXNext ? 'Your turn' : '\u00A0\u00A0')
+            : (isXNext ? 'X turn' : 'O turn'));
 
     return (
         <div className="App">
-            <div className="textField">Tic Tac Toe</div>
-            <Board
-                squares={squares}
-                handleMove={handleMove}
-                winner={winner}
-            />
-            <div className="container">
-                <div className="upperBoard">
-                    <div className="textField">{playerText}</div>
-                    <button className="button greenGradientBtn"
-                            onClick={reset}
-                    >
-                        One more
-                    </button>
+            <div className="textField0">Tic Tac Toe</div>
+            {gameMode === null ? (
+                <div className="game-mode-selection">
+                    <button
+                        className="button greenGradientBtn"
+                        type="button"
+                        onClick={() => setGameMode('twoPlayers')}>Two Players</button>
+                    <button
+                        className="button greenGradientBtn"
+                        type="button"
+                        onClick={() => setGameMode('computer')}>Play with Computer</button>
                 </div>
-                <div className="lowerBoard">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td className="bold-text">X</td>
-                            <td>{countX}</td>
-                        </tr>
-                        <tr>
-                            <td className="bold-text">O</td>
-                            <td>{countO}</td>
-                        </tr>
-                        <tr>
-                            <td className="bold-text">Draw</td>
-                            <td>{countDraw}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <button className="button greenGradientBtn"
-                            type="button"
-                            onClick={resetAll}
-                    >
-                        Reset game
-                    </button>
-                </div>
-            </div>
+            ) : (
+                <>
+                    <Board
+                        squares={squares}
+                        handleMove={handleMove}
+                        winner={winner}
+                    />
+                    <div className="container">
+                        <div className="upperBoard">
+                            <div className=" textContainer textField">{playerText}</div>
+                            <button className="button greenGradientBtn"
+                                    onClick={reset}
+                            >
+                                One more
+                            </button>
+                        </div>
+                        <div className="lowerBoard">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td className="textField1 bold-text">
+                                        {gameMode === 'computer' ? 'You' : 'X'}
+                                    </td>
+                                    <td className="textField1">{countX}</td>
+                                </tr>
+                                <tr>
+                                    <td className="textField1 bold-text">
+                                        {gameMode === 'computer' ? 'Comp' : 'X'}
+                                    </td>
+                                    <td className="textField1">{countO}</td>
+                                </tr>
+                                <tr>
+                                    <td className="textField1 bold-text">Draw</td>
+                                    <td className="textField1">{countDraw}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button className="button greenGradientBtn"
+                                    type="button"
+                                    onClick={resetAll}
+                            >
+                                Reset game
+                            </button>
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     );
 }
+
 
 export default App;

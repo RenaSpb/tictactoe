@@ -32,7 +32,7 @@ const squareStyle = {
     fontSize: '48px',
     height: '100px',
     width: '100px',
-    backgroundColor: '#fbf6f6'
+    backgroundColor: '#f8eeee'
 }
 
 const crossedSquareStyle = {

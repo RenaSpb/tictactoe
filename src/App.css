@@ -17,7 +17,7 @@
 }
 
 body {
-  background-color: #fbf6f6;
+  background-color: #f8eeee;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -39,11 +39,21 @@ body {
   margin: 0 auto;
 }
 
+.game-mode-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding-bottom: 10px;
+}
+
 .greenGradientBtn {
-  background-image: linear-gradient(132deg, #e7caca 0%, #766767 100%);
+  background-image: linear-gradient(132deg, #c09090 0%, #725e5e 100%);
   border-radius: 50px;
   border-style: none;
-  color: #fff;
+  color: #eff3f7;
+  text-shadow: 1px 1px 1px rgba(46, 34, 34, 0.5);
   cursor: pointer;
   font-size: 0.975rem;
   padding: 1rem 1.5rem;
@@ -83,13 +93,37 @@ td {
   text-align: center;
 }
 
-.textField {
+.textField, .textField0, .textField1 {
   color: #493c3c;
   font-family: "Dubai", serif;
-  font-size: 40px;
   text-align: center;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   margin-bottom: 15px;
+  line-height: 1;
+}
+
+.textField {
+  font-size: 30px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.textField0 {
+  font-size: 40px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.textField1 {
+  font-size: 20px;
+  text-shadow: 0 0 0;
+  color: #665a5a;
+}
+
+.textContainer {
+  width: 100px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .upperBoard, .lowerBoard {
@@ -109,5 +143,3 @@ td {
 .upperBoard button, .lowerBoard button {
   margin-left: auto;
 }
-
-
