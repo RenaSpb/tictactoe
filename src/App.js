@@ -65,7 +65,13 @@ function App() {
         setCountO(0)
     }
 
-    const playerText = winner ? `${winner.player} won!` : isXNext ? 'X turn' : 'O turn';
+    const playerText = winner
+        ? winner === 'Draw!'
+            ? 'Draw'
+            : `${winner.player} won!`
+        : isXNext
+            ? 'X turn'
+            : 'O turn';
 
     return (
         <div className="App">
