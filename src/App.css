@@ -15,6 +15,12 @@ body {
   color: #2c1717;
 }
 
+.container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 .greenGradientBtn {
   background-image: linear-gradient(132deg, #e7caca 0%, #766767 100%);
   border-radius: 50px;
