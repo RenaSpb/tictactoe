@@ -8,6 +8,7 @@ function App() {
     const [winner, setWinner] = useState(null)
     const [countX, setCountX] = useState(0)
     const [countO, setCountO] = useState(0)
+    const [countDraw, setCountDraw] = useState(0)
 
     useEffect(() => {
         winnerCheck();
@@ -47,8 +48,11 @@ function App() {
                 return;
             }
         }
-        if (squares.every(square => square !== null))
+        if (squares.every(square => square !== null)){
             setWinner({player: 'Draw', indices: []});
+            setCountDraw((prevCountDraw) => prevCountDraw + 1);
+        }
+
     }
 
     function reset() {
@@ -63,6 +67,7 @@ function App() {
         setIsXNext(true);
         setCountX(0);
         setCountO(0)
+        setCountDraw(0)
     }
 
     const playerText = winner
@@ -88,12 +93,6 @@ function App() {
                 </div>
                 <div className="lowerBoard">
                     <table>
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>Wins</th>
-                        </tr>
-                        </thead>
                         <tbody>
                         <tr>
                             <td className="bold-text">X</td>
@@ -102,6 +101,10 @@ function App() {
                         <tr>
                             <td className="bold-text">O</td>
                             <td>{countO}</td>
+                        </tr>
+                        <tr>
+                            <td className="bold-text">Draw</td>
+                            <td>{countDraw}</td>
                         </tr>
                         </tbody>
                     </table>

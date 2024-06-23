@@ -6,8 +6,19 @@
   overflow: hidden;
 }
 
+.boardStyle {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0;
+  border-collapse: collapse;
+}
+
+
 body {
-  background-color: #efeaea;
+  background-color: #fbf6f6;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -45,6 +56,24 @@ body {
   transform: translateY(-1px);
 }
 
+
+.winning-square {
+  background-color: #efd6d6;
+  position: relative;
+}
+
+.square {
+  border: 1px solid #756e6e;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.square-0, .square-3, .square-6 { border-left: none; }
+.square-2, .square-5, .square-8 { border-right: none; }
+.square-0, .square-1, .square-2 { border-top: none; }
+.square-6, .square-7, .square-8 { border-bottom: none; }
+
 table {
   width: 20%;
 }
@@ -53,7 +82,7 @@ td {
   color: #493c3c;
   font-family: "Dubai", serif;
   font-size: 20px;
-  padding: 0 0 0 0;
+  padding: 0 0 0 20px;
   text-align: center;
 }
 
@@ -65,14 +94,6 @@ td {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-th {
-  font-family: "Dubai", serif;
-  color: #493c3c;
-  font-size: 25px;
-  font-weight: bold;
-  padding-bottom: 0;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-}
 
 .upperBoard, .lowerBoard {
   width: 100%;
@@ -81,7 +102,7 @@ th {
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 @media (min-width: 600px) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 
 function getRotationAngle(winner) {
     if (!winner) return '0deg';
@@ -24,9 +25,6 @@ function getRotationAngle(winner) {
 }
 
 const squareStyle = {
-    border: '2px solid',
-    borderRadius: '10px',
-    borderColor: '#725e5e',
     color: '#574646',
     alignItems: 'center',
     display: 'flex',
@@ -34,34 +32,31 @@ const squareStyle = {
     fontSize: '48px',
     height: '100px',
     width: '100px',
-    boxSizing: 'border-box',
-    backgroundColor: '#faf9f3'
-
+    backgroundColor: '#fbf6f6'
 }
 
 const crossedSquareStyle = {
     ...squareStyle,
-    backgroundColor: '#efd6d6',
     position: 'relative',
 };
 
-const Square = ({square, handleMove, index, winner}) => {
+const Square = ({ square, handleMove, index, winner }) => {
     const isWinningSquare = winner && winner.indices.includes(index);
     const rotationAngle = getRotationAngle(winner);
 
     const strikeThroughStyle = {
         position: 'absolute',
-        content: ' ',
         top: '50%',
         left: '50%',
-        width: '100%',
-        height: '2px',
-        backgroundColor: 'black',
+        width: rotationAngle === '90deg' ? '100%' : '144%',
+        height: '4px',
+        backgroundColor: 'brown',
         transform: `translate(-50%, -50%) rotate(${rotationAngle})`,
     };
 
     return (
         <button
+            className={`square square-${index} ${isWinningSquare ? 'winning-square' : ''}`}
             style={isWinningSquare ? crossedSquareStyle : squareStyle}
             onClick={() => handleMove(index)}
             disabled={winner}
