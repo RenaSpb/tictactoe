@@ -1,7 +1,7 @@
 import React from 'react';
 
 function getRotationAngle(winner) {
-       if (!winner) return '0deg';
+    if (!winner) return '0deg';
     const indices = winner.indices;
 
     if (
@@ -16,7 +16,7 @@ function getRotationAngle(winner) {
         (indices.includes(2) && indices.includes(5) && indices.includes(8))
     ) {
         return '90deg';
-    } else if (indices.includes(0) && indices.includes(4) && indices.includes(8)){
+    } else if (indices.includes(0) && indices.includes(4) && indices.includes(8)) {
         return '45deg';
     } else if (indices.includes(2) && indices.includes(4) && indices.includes(6)) {
         return '-45deg';
@@ -26,7 +26,7 @@ function getRotationAngle(winner) {
 const squareStyle = {
     border: '2px solid black',
     borderRadius: '5px',
-    borderColor:  '#725e5e',
+    borderColor: '#725e5e',
     color: '#574646',
     alignItems: 'center',
     display: 'flex',
@@ -43,10 +43,9 @@ const crossedSquareStyle = {
     ...squareStyle,
     backgroundColor: '#efd6d6',
     position: 'relative',
-
 };
 
-const Square = ({ square, handleMove, index, winner }) => {
+const Square = ({square, handleMove, index, winner}) => {
     const isWinningSquare = winner && winner.indices.includes(index);
     const rotationAngle = getRotationAngle(winner);
 
