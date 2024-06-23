@@ -24,8 +24,8 @@ function getRotationAngle(winner) {
 }
 
 const squareStyle = {
-    border: '2px solid black',
-    borderRadius: '5px',
+    border: '2px solid',
+    borderRadius: '10px',
     borderColor: '#725e5e',
     color: '#574646',
     alignItems: 'center',

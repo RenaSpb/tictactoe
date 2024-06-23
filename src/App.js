@@ -66,16 +66,12 @@ function App() {
     }
 
     const playerText = winner
-        ? winner === 'Draw!'
-            ? 'Draw'
-            : `${winner.player} won!`
-        : isXNext
-            ? 'X turn'
-            : 'O turn';
+        ? (winner.player === 'Draw' ? 'Draw!' : `${winner.player} won!`)
+        : (isXNext ? 'X turn' : 'O turn');
 
     return (
         <div className="App">
-            <div className="textField">Tiс Tac Toe</div>
+            <div className="textField">Tic Tac Toe</div>
             <Board
                 squares={squares}
                 handleMove={handleMove}
