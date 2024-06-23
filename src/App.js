@@ -75,41 +75,41 @@ function App() {
                 handleMove={handleMove}
                 winner={winner}
             />
-            <div className="upperBoard">
-                <div className="textField">{playerText}</div>
-                <button className="button greenGradientBtn"
-                        onClick={reset}
-                >
-                    One more
-                </button>
-            </div>
-
-            <div className="lowerBoard">
-                <table>
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Wins</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td className="bold-text">X</td>
-                        <td>{countX}</td>
-                    </tr>
-                    <tr>
-                        <td className="bold-text">O</td>
-                        <td>{countO}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <button className="button greenGradientBtn"
-                        type="button"
-                        onClick={resetAll}
-                >
-                    Reset game
-                </button>
+            <div className="container">
+                <div className="upperBoard">
+                    <div className="textField">{playerText}</div>
+                    <button className="button greenGradientBtn"
+                            onClick={reset}
+                    >
+                        One more
+                    </button>
+                </div>
+                <div className="lowerBoard">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Wins</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td className="bold-text">X</td>
+                            <td>{countX}</td>
+                        </tr>
+                        <tr>
+                            <td className="bold-text">O</td>
+                            <td>{countO}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button className="button greenGradientBtn"
+                            type="button"
+                            onClick={resetAll}
+                    >
+                        Reset game
+                    </button>
+                </div>
             </div>
         </div>
     );
