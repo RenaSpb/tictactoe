@@ -23,6 +23,7 @@ function App() {
             }, 200);
             return () => clearTimeout(timer);
         }
+        //eslint-disable-next-line
     }, [isXNext, gameMode, winner]);
 
     function handleMove(index) {
