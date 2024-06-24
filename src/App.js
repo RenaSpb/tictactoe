@@ -178,7 +178,7 @@ function App() {
                                 </tr>
                                 <tr>
                                     <td className="textField1 bold-text">
-                                        {gameMode === 'computer' ? 'Comp' : 'X'}
+                                        {gameMode === 'computer' ? 'Comp' : 'O'}
                                     </td>
                                     <td className="textField1">{countO}</td>
                                 </tr>
