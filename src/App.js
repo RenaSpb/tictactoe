@@ -163,6 +163,7 @@ function App() {
                             <div className=" textContainer textField">{playerText}</div>
                             <button className="button greenGradientBtn"
                                     onClick={reset}
+                                    disabled={winner === null }
                             >
                                 One more
                             </button>
